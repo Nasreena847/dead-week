@@ -1,0 +1,478 @@
+/* =========================================================
+   Tombstone per-state visual treatments
+   Requirements: 4.1, 4.2, 4.3, 4.4, 4.6, 6.5, 6.6
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   @keyframes definitions
+   --------------------------------------------------------- */
+
+/* flickering state: opacity + brightness pulse, 1–3 cycles/sec */
+@keyframes tombstone-flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+        filter: brightness(1);
+    }
+
+    20% {
+        opacity: 0.82;
+        filter: brightness(0.85);
+    }
+
+    45% {
+        opacity: 0.95;
+        filter: brightness(1.1);
+    }
+
+    60% {
+        opacity: 0.75;
+        filter: brightness(0.7);
+    }
+
+    80% {
+        opacity: 0.9;
+        filter: brightness(0.95);
+    }
+}
+
+/* haunted state: shake / distortion — 2–5 cycles/sec (0.2s–0.5s duration) */
+@keyframes tombstone-shake {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    15% {
+        transform: translate(-2px, 1px) rotate(-0.4deg);
+    }
+
+    30% {
+        transform: translate(2px, -1px) rotate(0.4deg);
+    }
+
+    45% {
+        transform: translate(-1px, 2px) rotate(-0.2deg);
+    }
+
+    60% {
+        transform: translate(1px, -2px) rotate(0.3deg);
+    }
+
+    75% {
+        transform: translate(-2px, 0px) rotate(-0.3deg);
+    }
+
+    90% {
+        transform: translate(1px, 1px) rotate(0.2deg);
+    }
+}
+
+/* haunted glow pulse */
+@keyframes tombstone-glow-pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 8px rgba(127, 255, 0, 0.5),
+            0 0 20px rgba(127, 255, 0, 0.25),
+            0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    50% {
+        box-shadow:
+            0 0 18px rgba(127, 255, 0, 0.85),
+            0 0 40px rgba(127, 255, 0, 0.45),
+            0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* ---------------------------------------------------------
+   Base .tombstone card
+   Requirements: 6.5, 6.6
+   --------------------------------------------------------- */
+.tombstone {
+    position: relative;
+    /* stacking context for ::after overlays */
+    background-color: var(--color-surface, #1a0d2e);
+    border: 1px solid var(--color-border, #3d2060);
+    border-radius: 8px;
+    padding: var(--space-4, 1rem) var(--space-6, 1.5rem) var(--space-6, 1.5rem);
+    box-shadow: var(--shadow-surface, 0 4px 20px rgba(0, 0, 0, 0.7));
+    overflow: hidden;
+    /* keeps ::after pseudo-element clipped */
+    /* transitions for smooth state changes */
+    transition: box-shadow 0.3s ease;
+}
+
+/* ---------------------------------------------------------
+   .tombstone-header — name + badge row
+   --------------------------------------------------------- */
+.tombstone-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3, 0.75rem);
+    margin-block-end: var(--space-2, 0.5rem);
+}
+
+/* ---------------------------------------------------------
+   .tombstone-name — subject heading
+   --------------------------------------------------------- */
+.tombstone-name {
+    font-family: var(--font-display, 'Creepster', fantasy);
+    font-size: 1.5rem;
+    color: var(--color-accent, #ff6b35);
+    margin: 0;
+    line-height: 1.2;
+    word-break: break-word;
+    flex: 1 1 auto;
+}
+
+/* ---------------------------------------------------------
+   .tombstone-exam-date — exam date paragraph
+   --------------------------------------------------------- */
+.tombstone-exam-date {
+    font-size: 0.875rem;
+    color: var(--color-text-muted, #9b8faa);
+    margin: 0 0 var(--space-4, 1rem);
+}
+
+/* ---------------------------------------------------------
+   .tombstone-delete — delete subject button
+   --------------------------------------------------------- */
+.tombstone-delete {
+    display: block;
+    width: 100%;
+    margin-block-start: var(--space-4, 1rem);
+    background-color: transparent;
+    color: var(--color-error, #ff4d4d);
+    border: 1px solid var(--color-error, #ff4d4d);
+    border-radius: 4px;
+    padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.tombstone-delete:hover {
+    background-color: rgba(255, 77, 77, 0.15);
+}
+
+.tombstone-delete:focus-visible {
+    outline: 2px solid var(--color-error, #ff4d4d);
+    outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------
+   .curse-level-badge — numeric curse level indicator
+   Positioned outside any overlay layer (z-index above ::after)
+   Requirements: 4.5
+   --------------------------------------------------------- */
+.curse-level-badge {
+    position: relative;
+    z-index: 2;
+    /* sits above cracked/glow ::after overlays */
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 0 var(--space-2, 0.5rem);
+    border-radius: 50px;
+    background-color: var(--color-surface-2, #2d1b4e);
+    border: 1px solid var(--color-border, #3d2060);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text, #e8e8e8);
+    line-height: 1;
+}
+
+/* ---------------------------------------------------------
+   .topic-list — ordered topic list wrapper
+   --------------------------------------------------------- */
+.topic-list {
+    list-style: none;
+    margin: 0 0 var(--space-3, 0.75rem);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2, 0.5rem);
+}
+
+/* ---------------------------------------------------------
+   .topic-item — single topic row
+   --------------------------------------------------------- */
+.topic-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2, 0.5rem);
+}
+
+/* ---------------------------------------------------------
+   .topic-label — checkbox + name wrapper
+   --------------------------------------------------------- */
+.topic-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2, 0.5rem);
+    cursor: pointer;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.9375rem;
+    color: var(--color-text, #e8e8e8);
+}
+
+/* Studied topic name — muted and struck through */
+.topic-label .topic-name.studied {
+    text-decoration: line-through;
+    color: var(--color-text-muted, #9b8faa);
+}
+
+/* ---------------------------------------------------------
+   .topic-remove — remove topic button
+   --------------------------------------------------------- */
+.topic-remove {
+    flex-shrink: 0;
+    background: transparent;
+    color: var(--color-text-muted, #9b8faa);
+    border: none;
+    padding: var(--space-1, 0.25rem);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.topic-remove:hover {
+    color: var(--color-error, #ff4d4d);
+}
+
+.topic-remove:focus-visible {
+    outline: 2px solid var(--color-accent, #ff6b35);
+    outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------
+   .add-topic-form — inline add-topic form
+   --------------------------------------------------------- */
+.add-topic-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2, 0.5rem);
+    margin-block-start: var(--space-2, 0.5rem);
+}
+
+.add-topic-form .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1, 0.25rem);
+}
+
+.add-topic-form input[type="text"] {
+    font-size: 0.875rem;
+    padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+}
+
+.add-topic-form button[type="submit"] {
+    align-self: flex-start;
+    background-color: var(--color-surface-2, #2d1b4e);
+    color: var(--color-text, #e8e8e8);
+    border: 1px solid var(--color-border, #3d2060);
+    font-size: 0.875rem;
+}
+
+.add-topic-form button[type="submit"]:hover {
+    border-color: var(--color-accent, #ff6b35);
+    color: var(--color-accent, #ff6b35);
+}
+
+/* =========================================================
+   Per-state visual treatments
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   [data-state="calm"] — static, unlit, no animation
+   Requirements: 4.1
+   Dark, subdued palette; no glow, no animation.
+   --------------------------------------------------------- */
+.tombstone[data-state="calm"] {
+    /* keep default dark surface, no overrides needed beyond base */
+    opacity: 1;
+    filter: none;
+    animation: none;
+}
+
+/* calm ::after — no overlay */
+.tombstone[data-state="calm"]::after {
+    content: none;
+}
+
+/* ---------------------------------------------------------
+   [data-state="flickering"] — opacity/brightness animation
+   Requirements: 4.2
+   Animation cycles at ~2 Hz (0.5s), within the 1–3 cps range.
+   --------------------------------------------------------- */
+.tombstone[data-state="flickering"] {
+    animation: tombstone-flicker 0.5s ease-in-out infinite;
+}
+
+/* flickering ::after — no overlay needed */
+.tombstone[data-state="flickering"]::after {
+    content: none;
+}
+
+/* Badge and interactive children should not flicker themselves */
+.tombstone[data-state="flickering"] .curse-level-badge {
+    position: relative;
+    z-index: 2;
+}
+
+/* ---------------------------------------------------------
+   [data-state="cracked"] — cracked overlay, no animation
+   Requirements: 4.3
+   Uses ::after with CSS gradients to simulate cracks.
+   --------------------------------------------------------- */
+.tombstone[data-state="cracked"] {
+    animation: none;
+}
+
+/* Cracked texture via layered repeating-linear-gradients */
+.tombstone[data-state="cracked"]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* covers the full card */
+    border-radius: inherit;
+    pointer-events: none;
+    /* don't block clicks on children */
+    z-index: 1;
+    /* Multiple thin diagonal lines simulate cracks */
+    background-image:
+        /* crack 1 — steep diagonal, upper-left to lower-right */
+        repeating-linear-gradient(112deg,
+            transparent 0px,
+            transparent 38px,
+            rgba(200, 180, 255, 0.18) 38px,
+            rgba(200, 180, 255, 0.18) 39px,
+            transparent 39px,
+            transparent 55px),
+        /* crack 2 — shallower diagonal, opposite direction */
+        repeating-linear-gradient(68deg,
+            transparent 0px,
+            transparent 52px,
+            rgba(180, 150, 255, 0.12) 52px,
+            rgba(180, 150, 255, 0.12) 53px,
+            transparent 53px,
+            transparent 70px),
+        /* crack 3 — near-vertical splinter */
+        repeating-linear-gradient(82deg,
+            transparent 0px,
+            transparent 25px,
+            rgba(220, 200, 255, 0.10) 25px,
+            rgba(220, 200, 255, 0.10) 26px,
+            transparent 26px,
+            transparent 80px);
+    /* No animation */
+    animation: none;
+}
+
+/* Ensure badge renders above the cracked overlay */
+.tombstone[data-state="cracked"] .curse-level-badge {
+    position: relative;
+    z-index: 2;
+}
+
+/* ---------------------------------------------------------
+   [data-state="haunted"] — cracked overlay + glow + shake
+   Requirements: 4.4
+   Shake cycles at ~4 Hz (0.25s), within the 2–5 cps range.
+   Glow pulse at 2s period for a slow, eerie throb.
+   --------------------------------------------------------- */
+.tombstone[data-state="haunted"] {
+    border-color: rgba(127, 255, 0, 0.45);
+    animation:
+        tombstone-shake 0.25s linear infinite,
+        tombstone-glow-pulse 2s ease-in-out infinite;
+}
+
+/* Haunted cracked overlay — same crack pattern as cracked, more intense */
+.tombstone[data-state="haunted"]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        repeating-linear-gradient(112deg,
+            transparent 0px,
+            transparent 38px,
+            rgba(127, 255, 0, 0.22) 38px,
+            rgba(127, 255, 0, 0.22) 40px,
+            transparent 40px,
+            transparent 55px),
+        repeating-linear-gradient(68deg,
+            transparent 0px,
+            transparent 52px,
+            rgba(127, 255, 0, 0.15) 52px,
+            rgba(127, 255, 0, 0.15) 54px,
+            transparent 54px,
+            transparent 70px),
+        repeating-linear-gradient(82deg,
+            transparent 0px,
+            transparent 25px,
+            rgba(180, 255, 100, 0.12) 25px,
+            rgba(180, 255, 100, 0.12) 27px,
+            transparent 27px,
+            transparent 80px);
+    animation: none;
+}
+
+/* Ensure badge renders above the haunted overlay */
+.tombstone[data-state="haunted"] .curse-level-badge {
+    position: relative;
+    z-index: 2;
+}
+
+/* Haunted state — name glows with accent-2 colour */
+.tombstone[data-state="haunted"] .tombstone-name {
+    color: var(--color-accent-2, #7fff00);
+    text-shadow:
+        0 0 6px rgba(127, 255, 0, 0.7),
+        0 0 12px rgba(127, 255, 0, 0.4);
+}
+
+/* Haunted badge */
+.tombstone[data-state="haunted"] .curse-level-badge {
+    border-color: rgba(127, 255, 0, 0.6);
+    box-shadow: 0 0 6px rgba(127, 255, 0, 0.5);
+}
+
+/* =========================================================
+   Accessibility — reduced motion
+   Requirements: 4.6
+   Disables all looping animations on .tombstone and children.
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+
+    .tombstone,
+    .tombstone *,
+    .tombstone::before,
+    .tombstone::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Haunted state still shows glow and cracks, just without motion */
+    .tombstone[data-state="haunted"] {
+        box-shadow:
+            0 0 14px rgba(127, 255, 0, 0.5),
+            0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+}

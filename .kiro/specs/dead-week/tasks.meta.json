@@ -1,0 +1,397 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Initialise a Vite + React + TypeScript project inside the workspace root and install runtime dependencies (`uuid`) and dev dependencies (`vitest`, `@testing-library/react`, `@testing-library/user-event`, `jsdom`, `fast-check`)": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529191033
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529205626
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529721307
+      }
+    ],
+    "1.2 Create `src/types.ts` with the `Subject`, `Topic`, `SubjectDraft`, and `TombstoneState` TypeScript interfaces and the `STORAGE_KEY` constant": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529192675
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529210394
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529726667
+      }
+    ],
+    "2.1 Create `src/utils/curseLevelFor.ts` implementing `curseLevelFor(subject: Subject): number`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529192947
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529732158
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529958962
+      }
+    ],
+    "2.4 Create `src/utils/getTombstoneState.ts` implementing `getTombstoneState(curseLevel: number): TombstoneState`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529193147
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529737071
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529963978
+      }
+    ],
+    "2.6 Create `src/utils/topicValidation.ts` exporting `validateTopicName(name: string, existingNames: string[]): string | null`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529193279
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529742385
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529969753
+      }
+    ],
+    "3. Checkpoint — pure logic": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529193406
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530147647
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530235511
+      }
+    ],
+    "4.1 Create `src/hooks/useSubjects.ts` implementing `useSubjects(): UseSubjectsResult`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529193576
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529982144
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530132784
+      }
+    ],
+    "5. Checkpoint — hook and storage": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529193690
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530240521
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530352777
+      }
+    ],
+    "6.1 Create `src/components/CurseLevelBadge.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529193815
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530367106
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530443642
+      }
+    ],
+    "6.2 Create `src/components/TopicItem.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529193993
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530372284
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530448619
+      }
+    ],
+    "6.3 Create `src/components/TopicList.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529194192
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530377445
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530454446
+      }
+    ],
+    "6.4 Create `src/components/AddTopicForm.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529194381
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530382551
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530460350
+      }
+    ],
+    "6.5 Create `src/components/Tombstone.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529194556
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530485153
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531174784
+      }
+    ],
+    "6.6 Create `src/components/AddSubjectForm.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529194761
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530492873
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531181368
+      }
+    ],
+    "6.7 Create `src/components/Graveyard.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529194908
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531187159
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531321201
+      }
+    ],
+    "6.8 Wire everything together in `src/App.tsx`": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529195084
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531326784
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531980511
+      }
+    ],
+    "7.1 Create `src/styles/global.css` with base dark theme": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529195284
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531332212
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531986072
+      }
+    ],
+    "7.2 Create `src/styles/graveyard.css` with responsive grid layout": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529195495
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531337109
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531991602
+      }
+    ],
+    "7.3 Create `src/styles/tombstone.css` with per-state visual treatments": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529195643
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531342413
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531997240
+      }
+    ],
+    "8. Checkpoint — visual polish": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529195801
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793532003085
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793532199734
+      }
+    ],
+    "10. Final checkpoint — all tests pass": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529195937
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793532216851
+      },
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793532286849
+      }
+    ],
+    "1. Scaffold project and define core types": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529726819
+      }
+    ],
+    "2. Implement pure utility functions": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793529970722
+      }
+    ],
+    "4. Implement `useSubjects` custom hook and localStorage layer": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793530132962
+      }
+    ],
+    "6. Build UI components (structure and logic)": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531980685
+      }
+    ],
+    "7. Add Halloween CSS styling": [
+      {
+        "executionId": "6cb0f70e-f4ed-4784-b5e0-27a7ebaf9070",
+        "chatSessionId": "sess_ad2d405e-3113-419e-972b-e860fcaa720d",
+        "timestamp": 1793531997429
+      }
+    ]
+  }
+}
